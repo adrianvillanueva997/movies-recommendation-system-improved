@@ -10,8 +10,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Movie {
-  id    Int    @id @default(autoincrement())
-  title String @db.VarChar(255)
+//
+model Movies {
+  id     Int      @id @default(autoincrement())
+  title  String   @db.VarChar(255)
+  Genres Genres[] @relation("fields: [id]")
+}
 
+//
+model Genres {
+  id       Int    @id @default(autoincrement())
+  MovieID  Movies @relation("fields: [id]", fields: [moviesId], references: [id])
+  moviesId Int
 }
