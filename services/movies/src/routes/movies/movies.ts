@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.get("/movie", async (req: Request, res: Response) => {
-  const movies = await prisma.movies.findMany();
+  const movies = await prisma.movie.findMany();
   res.send(movies);
 });
 

@@ -11,15 +11,16 @@ generator client {
 }
 
 //
-model Movies {
+model Movie {
   id     Int      @id @default(autoincrement())
   title  String   @db.VarChar(255)
-  Genres Genres[] @relation("fields: [id]")
+  Genres Genres[]
 }
 
 //
 model Genres {
-  id       Int    @id @default(autoincrement())
-  MovieID  Movies @relation("fields: [id]", fields: [moviesId], references: [id])
-  moviesId Int
+  id      Int    @id @default(autoincrement())
+  MovieID Movie  @relation(fields: [movieId], references: [id])
+  movieId Int
+  Genre   String @db.VarChar(255)
 }
